@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="portfolioApp">
+
+<head>
+  <title>My Portfolio</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <div ng-controller="PortfolioController">
+    <h1>{{ name }}</h1>
+    <p>{{ bio }}</p>
+
+    <h2>Projects</h2>
+    <ul>
+      <li ng-repeat="project in projects">
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.description }}</p>
+
+        <h4>Photos</h4>
+        <ul>
+          <li ng-repeat="photo in project.photos">
+            <img ng-src="{{ photo.url }}" alt="{{ photo.caption }}">
+            <p>{{ photo.caption }}</p>
+          </li>
+        </ul>
+
+        <h4>Videos</h4>
+        <ul>
+          <li ng-repeat="video in project.videos">
+            <video controls>
+              <source ng-src="{{ video.url }}" type="{{ video.type }}">
+              Your browser does not support the video tag.
+            </video>
+            <p>{{ video.caption }}</p>
+          </li>
+        </ul>
+
+        <h4>Meta Files</h4>
+        <ul>
+          <li ng-repeat="metaFile in project.metaFiles">
+            <a ng-href="{{ metaFile.url }}" download>{{ metaFile.name }}</a>
+            <p>{{ metaFile.description }}</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
